@@ -27,20 +27,31 @@ namespace ValueConverter
             }
             catch
             {
-                MessageBox.Show("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                MessageBox.Show("Проверьте интернет подключение");
             }
         }
 
         private async void btnConvert_Click(object sender, EventArgs e)
         {
-            decimal amount = decimal.Parse(CurrValue.Text);
+            btnConvert.Enabled = false;
+            if (!decimal.TryParse(CurrValue.Text, out decimal amount))
+            {
+                MessageBox.Show("Введите число");
+                return;
+            }
             string from = CurrCurrency.SelectedItem.ToString();
             string to = ConvCurrency.SelectedItem.ToString();
-
-            decimal rate = await api.GetRate(from, to);
-            decimal result = amount * rate;
-
-            ConvValue.Text = result.ToString();
+            try
+            {
+                decimal rate = await api.GetRate(from, to);
+                decimal result = amount * rate;
+                ConvValue.Text = result.ToString("F2");
+            }
+            catch
+            {
+                MessageBox.Show("Ошибка конвертации. Проверьте интернет.");
+            }
+            btnConvert.Enabled = true;
         }
     }
 }
