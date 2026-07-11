@@ -34,6 +34,7 @@ namespace ValueConverter
 
         private async void btnConvert_Click(object sender, EventArgs e)
         {
+            btnConvert.Enabled = false;
             if (!decimal.TryParse(CurrValue.Text, out decimal amount))
             {
                 MessageBox.Show("Введите число");
@@ -51,6 +52,7 @@ namespace ValueConverter
             {
                 MessageBox.Show("Ошибка конвертации. Проверьте интернет.");
             }
+            btnConvert.Enabled = true;
         }
     }
 }
