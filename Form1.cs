@@ -33,7 +33,11 @@ namespace ValueConverter
 
         private async void btnConvert_Click(object sender, EventArgs e)
         {
-            decimal amount = decimal.Parse(CurrValue.Text);
+            if (!decimal.TryParse(CurrValue.Text, out decimal amount))
+            {
+                MessageBox.Show("Введите число");
+                return;
+            }
             string from = CurrCurrency.SelectedItem.ToString();
             string to = ConvCurrency.SelectedItem.ToString();
 
