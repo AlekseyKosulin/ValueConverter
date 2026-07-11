@@ -27,7 +27,7 @@ namespace ValueConverter
             }
             catch
             {
-                MessageBox.Show("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                MessageBox.Show("Проверьте интернет подключение");
             }
         }
 
@@ -40,11 +40,16 @@ namespace ValueConverter
             }
             string from = CurrCurrency.SelectedItem.ToString();
             string to = ConvCurrency.SelectedItem.ToString();
-
-            decimal rate = await api.GetRate(from, to);
-            decimal result = amount * rate;
-
-            ConvValue.Text = result.ToString();
+            try
+            {
+                decimal rate = await api.GetRate(from, to);
+                decimal result = amount * rate;
+                ConvValue.Text = result.ToString("F2");
+            }
+            catch
+            {
+                MessageBox.Show("Ошибка конвертации. Проверьте интернет.");
+            }
         }
     }
 }
