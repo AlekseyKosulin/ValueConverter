@@ -27,7 +27,7 @@ namespace ValueConverter
             }
             catch
             {
-                MessageBox.Show("Не удалось загрузить валюты. Проверьте интернет.");
+                MessageBox.Show("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             }
         }
 
