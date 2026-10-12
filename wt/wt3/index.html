@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Запись на сдачу зачёта</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            grid-column: 1 / -1;
+            text-align: center;
+            color: #2c3e50;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .column {
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background-color: #fafafa;
+        }
+
+        .column h3 {
+            margin-top: 0;
+            color: #34495e;
+            font-size: 18px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #555;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        input[type="date"],
+        select {
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            width: 100%;
+            box-sizing: border-box;
+            background-color: #fff;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            margin-top: 5px;
+        }
+
+        .radio-group label, .checkbox-group label {
+            font-weight: normal;
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        input:user-valid:not(:placeholder-shown) {
+            border-color: #2ecc71;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%232ecc71' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 16px;
+            padding-right: 35px;
+        }
+
+        input:user-invalid:not(:placeholder-shown) {
+            border-color: #e74c3c;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23e74c3c' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'%3E%3C/line%3E%3Cline x1='6' y1='6' x2='18' y2='18'%3E%3C/line%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 16px;
+            padding-right: 35px;
+        }
+
+        button[type="submit"] {
+            grid-column: 1 / -1;
+            padding: 12px 24px;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            justify-self: center;
+            width: 200px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #1a252f;
+            transform: translateY(-2px);
+        }
+
+        button[type="submit"]:active {
+            transform: translateY(0);
+        }
+
+    </style>
+</head>
+<body>
+
+    <form action="#" method="post">
+        <h2>Запись на сдачу зачёта</h2>
+
+        <div class="column">
+            <h3>Информация о студенте</h3>
+
+            <div class="form-group">
+                <label for="fullname">ФИО студента:</label>
+                <input type="text" 
+                       id="fullname" 
+                       name="fullname" 
+                       placeholder="Иванов Иван Иванович"
+                       maxlength="256"
+                       pattern="^[А-Яа-яЁё]+\s[А-Яа-яЁё]+\s[А-Яа-яЁё]+$"
+                       title="Введите три слова на кириллице: Фамилия Имя Отчество"
+                       autofocus
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="course">Курс:</label>
+                <input type="number" 
+                       id="course" 
+                       name="course" 
+                       placeholder="1"
+                       min="1" 
+                       max="6"
+                       title="Курс должен быть от 1 до 6">
+            </div>
+
+            <div class="form-group">
+                <label>Факультет:</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="faculty" value="it" checked> ИТ
+                    </label>
+                    <label>
+                        <input type="radio" name="faculty" value="economics"> Экономический
+                    </label>
+                    <label>
+                        <input type="radio" name="faculty" value="humanities"> Гуманитарный
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Электронная почта:</label>
+                <input type="email" 
+                       id="email" 
+                       name="email" 
+                       placeholder="student@example.com"
+                       maxlength="256"
+                       title="Введите корректный email адрес">
+            </div>
+
+            <div class="form-group">
+                <label>Интересы:</label>
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" name="interests" value="tech"> Технологии
+                    </label>
+                    <label>
+                        <input type="checkbox" name="interests" value="psychology"> Психология
+                    </label>
+                    <label>
+                        <input type="checkbox" name="interests" value="literature"> Литература
+                    </label>
+                    <label>
+                        <input type="checkbox" name="interests" value="auto"> Авто
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="group">Группа:</label>
+                <input type="text" 
+                       id="group" 
+                       name="group" 
+                       placeholder="A124"
+                       pattern="\d{4}"
+                       maxlength="4"
+                       title="Только цифры, 4 символа (например, 1234)"
+                       required>
+            </div>
+        </div>
+
+        <div class="column">
+            <h3>Информация о сдаче</h3>
+
+            <div class="form-group">
+                <label for="subject">Предмет для сдачи:</label>
+                <select id="subject" name="subject" required>
+                    <option value="" disabled selected>Выберите предмет</option>
+                    <option value="web">Веб-технологии</option>
+                    <option value="math">Математика</option>
+                    <option value="physics">Физика</option>
+                    <option value="history">История</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="teacher">Преподаватель:</label>
+                <input type="text" 
+                       id="teacher" 
+                       name="teacher" 
+                       placeholder="Иванов Иван Иванович"
+                       maxlength="256"
+                       pattern="^[А-Яа-яЁё]+\s[А-Яа-яЁё]+\s[А-Яа-яЁё]+$"
+                       title="Введите три слова на кириллице: Фамилия Имя Отчество">
+            </div>
+
+            <div class="form-group">
+                <label for="date">Дата сдачи:</label>
+                <input type="date" 
+                       id="date" 
+                       name="date"
+                       title="Выберите дату сдачи">
+            </div>
+
+            <div class="form-group">
+                <label>Форма сдачи:</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="exam_format" value="offline" checked> Очная
+                    </label>
+                    <label>
+                        <input type="radio" name="exam_format" value="online"> Дистанционная
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit">Записаться</button>
+    </form>
+
+</body>
+</html>
